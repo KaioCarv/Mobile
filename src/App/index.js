@@ -25,9 +25,9 @@ function ListItem({ title }) {
   return (
     <View style={styles.PostContainer}>
       <Text style={styles.postTitle}>{ title}</Text>
-    </View>
+    </View> 
   );
-}
+}a
 
 export default function App() {
   return (
