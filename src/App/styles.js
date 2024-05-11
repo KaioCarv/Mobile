@@ -13,8 +13,11 @@ import { StyleSheet, Platform, StatusBar } from "react-native";
  },
  PostContainer:{
   backgroundColor:"#333",
-  padding: 24,
   borderRadius: 8,
+  height: 64,
+  justifyContent: "center",
+  alignItems: "center",
+  
  },
  postTitle:{
   color: "#fff",
