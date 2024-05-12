@@ -11,17 +11,30 @@ import { StyleSheet, Platform, StatusBar } from "react-native";
   paddingHorizontal:20,
   flex:1,
  },
- PostContainer:{
-  backgroundColor:"#333",
-  borderRadius: 8,
-  height: 64,
-  justifyContent: "center",
+modalOverlay: {
+  backgroundColor: 'rgba(0,0,0, 0.5)',
+  flex: 1,
   alignItems: "center",
+  justifyContent: "center",
+},
+modalContainer: {
+  backgroundColor: "white",
+  padding: 16,
+  borderRadius: 8,
+},
+
+
+//  PostContainer:{
+//   backgroundColor:"#333",
+//   borderRadius: 8,
+//   height: 64,
+//   justifyContent: "center",
+//   alignItems: "center",
   
- },
- postTitle:{
-  color: "#fff",
-  fontSize: 18,
-  fontWeight: "bold"
- },
+//  },
+//  postTitle:{
+//   color: "#fff",
+//   fontSize: 18,
+//   fontWeight: "bold"
+//  },
 });

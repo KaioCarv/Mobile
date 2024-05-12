@@ -8,7 +8,8 @@ import { styles } from "./styles";
 
 export function Button({
    children, 
-   disabled, 
+   disabled,
+   style ,
    ...props 
   }) {
   return (
@@ -20,6 +21,7 @@ export function Button({
        styles.button,
        pressed && styles.buttonActive,
        disabled && styles.disebledButtom,
+       style,
      ]}
      {...props}
       >

@@ -1,138 +1,45 @@
-import { SafeAreaView, View, Text, FlatList, RefreshControl, ActivityIndicator, Platform } from "react-native";
+import { SafeAreaView, View, Modal, Text, StatusBar } from "react-native";
 
-import { useEffect, useState } from "react";
 import { styles } from "./styles";
-
-const posts = Array.from({ length: 100 }, (_, index) => ({
-  id: Math.random(),
-  title: `Post #${index + 1}`,
-}));
-
-function ListItem({ title }) {
-  useEffect(() => {
-    console.log(`Montou o ${title}`);
-
-    return () => {
-      console.log(`desmontou o ${title}`);
-    };
-  }, []);
-
-  return (
-    <View style={styles.PostContainer}>
-      <Text style={styles.postTitle}>{title}</Text>
-    </View>
-  );
-}
-
-function Header({title}) {
-  return (
-    <View
-      style={{
-        backgroundColor: "#ccc",
-        padding: 16,
-        borderRadius: 8,
-      }}
-    >
-      <Text>{title}</Text>
-    </View>
-  );
-}
-
-function Footer() {
-  return (
-    <View
-      style={{
-        backgroundColor: "#000",
-        padding: 24,
-        borderRadius: 8,
-      }}
-    >
-      <Text
-      style={{color: '#fff'}}>Rodape</Text>
-    </View>
-  );
-}
-function EmptyState() {
-  return (
-    <View
-      style={{
-        backgroundColor: "#555",
-        padding: 24,
-        borderRadius: 8,
-      }}
-    >
-      <Text>Nenhum item foi encontrado</Text>
-    </View>
-  );
-}
-
- function Divader(){
-   return(
-    <View
-    style={{
-      height: 1,
-      backgroundColor: '#aaa',
-      marginVertical:12,
-    }}
-    />
-   )
- }
-
+import { Button } from "../Components/Button";
+import { useState } from "react";
 
 export default function App() {
- const [isRefreshing, setIsRefreshing] = useState(false)
+const [visible, setVisible] = useState(false)
 
- async function handleRefresh(){
-    setIsRefreshing(true);
+ return(
+  <SafeAreaView style={styles.wrapper}>
+        <View style={styles.container}>
+         <Button onPress={() => setVisible(true)}>
+           Abrir Modal
+         </Button>
+        </View>
+    
+ 
 
-    await new Promise(resolve => setTimeout(resolve,1500));
-    console.log("Atualizou..");
+    <Modal
+    animationType="fade"
+    visible={visible}
+    statusBarTranslucent
+    transparent
+    >
+ <StatusBar barStyle='light-content' animated/>
 
-    setIsRefreshing(false);
-   }
+     <View style={styles.modalOverlay}>
+      <View style={styles.modalContainer}>
+      <Text style={{marginBottom: 16}}>
+        Este é o conteudo do Modal!
+      </Text>
 
-  return (
-    <SafeAreaView style={styles.wrapper}>
-     {/* <ActivityIndicator
-       color={'purple'}
-       size={Platform.OS === 'android' ? 90 : 'large'}
-     /> */}
-
-      <FlatList
-      
-      
-      refreshControl={(<RefreshControl
-        refreshing={isRefreshing}
-        onRefresh={handleRefresh}
-        // Android only
-        colors={['#f00', 'purple', 'blue']}
-        progressBackgroundColor={'#000'}
-        size="large"
-      />)}
-
-        ListHeaderComponent={<Header title="Posts"/>}
-       ListFooterComponent={
-        posts.length > 0 ? Footer : null
-       }
-       ListEmptyComponent={EmptyState}
-       stickyHeaderIndices={[0,2]}
-     
-
-      //  ItemSeparatorComponent={Divader}
-
-        style={styles.container}
-        contentContainerStyle={{ gap: 16 }}
-        data={posts}
-        keyExtractor={(post) => post.id}
-        renderItem={({ item: post, index }) => (
-          <ListItem title={post.title} /> 
-         )}
-        getItemLayout={(data, index) => ({
-          index,
-          length: 64 + 16,
-          offset: (64 + 16) * index,
-        })}
-      />
+      <Button
+       style={{paddingHorizontal: 20,}}
+       onPress={() => setVisible(false)}
+       >
+        Fechar
+      </Button>
+      </View>
+     </View>
+    </Modal>
     </SafeAreaView>
   );
 }
