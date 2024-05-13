@@ -10,16 +10,18 @@ import { StyleSheet, Platform, StatusBar } from "react-native";
   container: {
   paddingHorizontal:20,
   flex:1,
+ gap: 16
  },
 modalOverlay: {
   backgroundColor: 'rgba(0,0,0, 0.5)',
   flex: 1,
   alignItems: "center",
   justifyContent: "center",
+  
 },
 modalContainer: {
   backgroundColor: "white",
-  padding: 16,
+  padding: 24,
   borderRadius: 8,
 },
 

@@ -1,22 +1,71 @@
-import { SafeAreaView, View, Modal, Text, StatusBar } from "react-native";
+import { 
+  SafeAreaView, 
+  View, 
+  Modal, 
+  Text,
+  StatusBar, 
+  Alert,
+  Appearance,
+  useColorScheme,
+ } from "react-native";
 
 import { styles } from "./styles";
 import { Button } from "../Components/Button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function App() {
 const [visible, setVisible] = useState(false)
+const theme = useColorScheme();
+
+function handleShowAlert(){
+Alert.alert(
+  'Atenção',
+  'Bloquear usuario fara que ele perca acesso ao sistema',
+  [
+    {
+      text: 'Bloquear',
+      onPress: () => console.log('Bloquear usuario'),
+
+    },
+    {
+      text: 'Cancelar',
+      onPress: () => console.log('Bloquear usuario')
+    },
+    {
+      text: 'Depois',
+      onPress: () => console.log('Bloquear usuario')
+    },
+  ],
+  {
+    cancelable: true,
+    onDismiss: () => {
+      console.log('Alert Dsimissed!')
+    },
+    
+  }
+)
+}
 
  return(
   <SafeAreaView style={styles.wrapper}>
-        <View style={styles.container}>
+    <StatusBar translucent/> 
+        <View 
+         style={[
+          styles.container,
+          {
+            backgroundColor: theme ==='dark' ? '#000' : '#fff'
+          }
+        ]}
+        >
          <Button onPress={() => setVisible(true)}>
            Abrir Modal
          </Button>
+         
+         <Button onPress={handleShowAlert}>
+           Mostrar Alerta
+         </Button>
         </View>
     
- 
-
     <Modal
     animationType="fade"
     visible={visible}

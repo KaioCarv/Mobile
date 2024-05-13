@@ -4,13 +4,15 @@ import { StyleSheet, Platform } from "react-native";
 export const styles = StyleSheet.create({
   ButtonWrapper:{
     overflow:"hidden",
-    borderRadius:8
+    borderRadius:10,
+  
   },
   button: {
     backgroundColor: '#222',
     height: 48,
     alignItems: 'center',
     justifyContent: 'center',
+     
   },
 buttonActive: {
   opacity:Platform.OS === "ios" ? 0.7 : 1,
