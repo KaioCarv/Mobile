@@ -22,6 +22,9 @@ const [visible, setVisible] = useState(false)
     visible={visible}
     statusBarTranslucent
     transparent
+    onRequestClose={()=> {
+      setVisible(false);
+    }}
     >
  <StatusBar barStyle='light-content' animated/>
 
