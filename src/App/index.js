@@ -1,28 +1,46 @@
-import { ImageBackground, SafeAreaView, View } from "react-native";
+import { PixelRatio, SafeAreaView, Text, View, useWindowDimensions } from "react-native";
 
-import { useState } from "react";
-import { Button } from "../Components/Button";
 import { styles } from "./styles";
 
 export default function App() {
-  const [isBlurred, setIsBlurred] = useState(true);
+
+ const {
+  fontScale,
+  height,
+  width,
+  scale}
+  = useWindowDimensions();
+
+  const orientation = width > height ? 'landscape' : 'portrait'
 
   return (
-    <ImageBackground 
-    style={{ flex: 1 }}
-    source={require('../images/carro.jpg')} 
-       imageStyle={{
-        // tintColor: '#f00'
-       }}
-        blurRadius={isBlurred ? 50 : 0}
-      >
       <SafeAreaView style={styles.wrapper}>
         <View style={styles.container}>
-          <Button onPress={() => {setIsBlurred(!isBlurred);}}>
-            {isBlurred ? "Mostrar Imagem" : "Borrar imagem"}
-          </Button>
+          <Text>
+            Font scale: {fontScale}
+          </Text>
+          <Text>
+            dimenções: {width}x{height}
+          </Text>
+          <Text>
+            Pixel Ratio: {scale}
+          </Text>
+          <Text>
+            Orientation: {orientation}
+          </Text>
+          <Text>
+             {PixelRatio.get()}
+          </Text>
+          <Text>
+             {PixelRatio.getFontScale()}
+          </Text>
+          <Text>
+             {PixelRatio.getPixelSizeForLayoutSize(100)}
+          </Text>
+          <Text>
+             {PixelRatio.roundToNearestPixel(8.44)}
+          </Text>
         </View>
-      </SafeAreaView>
-    </ImageBackground>
+      </SafeAreaView>   
   );
 }
